@@ -10,5 +10,5 @@ app.use(cors());
 app.use(process.env.GALLERY_PATH, Gallery);
 
 http.createServer(app).listen(process.env.PORT, () => {
-	console.log(`Server running at ${process.env.PORT}`)
+	console.log(`Server running at ${process.env.PORT}`);
 });

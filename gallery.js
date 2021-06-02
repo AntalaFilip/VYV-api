@@ -7,7 +7,7 @@ require('dotenv').config();
 const router = express.Router();
 
 router.get(`/`, (req, res) => {
-	const files = fs.readdirSync('./gallery', {withFileTypes: true});
+	const files = fs.readdirSync('./gallery', { withFileTypes: true });
 
 	const galleries = files.filter(file => file.isDirectory()).map(dirent => dirent.name);
 
@@ -18,10 +18,10 @@ router.get(`/`, (req, res) => {
 				id: gal,
 				name: mf.name,
 				desc: mf.desc,
-				uri: `${process.env.URL}/gallery/${gal}`
-			}
-		})
-	})
+				uri: `${process.env.URL}/gallery/${gal}`,
+			};
+		}),
+	});
 });
 
 router.get(`/:gallery`, (req, res) => {
@@ -47,9 +47,9 @@ router.get(`/:gallery`, (req, res) => {
 				author: data ? data.author : null,
 				description: data ? data.desc : null,
 				uri: `${process.env.URL}/gallery/${req.params['gallery']}/${item}`,
-			}
-		})
-	})
+			};
+		}),
+	});
 });
 
 router.get(`/:gallery/:item`, (req, res) => {
