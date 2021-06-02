@@ -14,10 +14,11 @@ router.get(`/`, (req, res) => {
 	res.send({
 		items: galleries.map(gal => {
 			const mf = manifest[gal];
+			if (!mf) console.error(`Missing manifest entry for '${gal}'!`);
 			return {
 				id: gal,
-				name: mf.name,
-				desc: mf.desc,
+				name: mf ? mf.name : null,
+				desc: mf ? mf.desc : null,
 				uri: `${process.env.URL}/gallery/${gal}`,
 			};
 		}),
